@@ -21,7 +21,7 @@ public class Interest {
         return principal;
     }
 
-    public Float getInterest(Scanner console) {
+    private Float getInterest(Scanner console) {
         System.out.print("Enter interest rate: ");
 
         while(!console.hasNextFloat()) {
@@ -39,7 +39,7 @@ public class Interest {
         return interest;
     }
 
-    public Float getTime(Scanner console) {
+    private Float getTime(Scanner console) {
         System.out.print("Enter time (in months): ");
 
         while(!console.hasNextInt()) {
