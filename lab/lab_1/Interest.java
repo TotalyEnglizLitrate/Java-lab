@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Interest {
     private Float getPrincipal(Scanner console) {
         Float principal = -1.0f;
-        while (principal <= 0.0) {
+        while (principal <= 0.0 || principal.isNaN() || principal.isInfinite()) {
             System.out.print("Enter principal amount: ");
             if (console.hasNextFloat()) {
                 principal = console.nextFloat();
-                if (principal <= 0.0) {
+                if (principal <= 0.0 || principal.isNaN() || principal.isInfinite()) {
                     System.out.println("Invalid input! please try again");
                 }
             } else {
@@ -22,11 +22,11 @@ public class Interest {
 
     private Float getInterest(Scanner console) {
         Float interest = -1.0f;
-        while (interest < 0.0 || interest > 100.0) {
+        while (interest < 0.0 || interest > 100.0 || interest.isNaN() || interest.isInfinite()) {
             System.out.print("Enter interest rate: ");
             if (console.hasNextFloat()) {
                 interest = console.nextFloat();
-                if (interest < 0.0 || interest > 100.0) {
+                if (interest < 0.0 || interest > 100.0  || interest.isNaN() || interest.isInfinite()) {
                     System.out.println("Invalid Input! please try again");
                 }
             } else {
