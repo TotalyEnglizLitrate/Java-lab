@@ -10,8 +10,15 @@ public class Interest {
             System.out.println("Invalid input! please try again");
             System.out.print("Enter principal amount: ");
         }
+        
+        Float principal = console.nextFloat();
 
-        return console.nextFloat();
+        if (principal <= 0.0) {
+            System.out.println("Invalid input! please try again");
+            return this.getPrincipal(console);
+        }
+
+        return principal;
     }
 
     public Float getInterest(Scanner console) {
@@ -26,7 +33,7 @@ public class Interest {
 
         if (interest > 100.0 || interest < 0.0) {
             System.out.println("Invalid Input! please try again");
-            this.getInterest(console);
+            return this.getInterest(console);
         }
 
         return interest;
@@ -39,8 +46,13 @@ public class Interest {
             System.out.println("Invalid input! please try again");
             System.out.print("Enter time (in months): ");
         }
+        Integer time = console.nextInt();
+        if (time <= 0) {
+            System.out.println("Invalid Input! please try again");
+            return this.getTime(console);
+        }
 
-        return ((float) console.nextInt()) / 12;
+        return ((float) time) / 12;
     }
 
     public static void main(String[] args) {
