@@ -4,54 +4,53 @@ import java.util.Scanner;
 
 public class Interest {
     private Float getPrincipal(Scanner console) {
-        System.out.print("Enter principal amount: ");
-        
-        while (!console.hasNextFloat()) {
-            System.out.println("Invalid input! please try again");
+        Float principal = -1.0f;
+        while (principal <= 0.0) {
             System.out.print("Enter principal amount: ");
+            if (console.hasNextFloat()) {
+                principal = console.nextFloat();
+                if (principal <= 0.0) {
+                    System.out.println("Invalid input! please try again");
+                }
+            } else {
+                System.out.println("Invalid input! please try again");
+                console.next(); // Clear invalid input
+            }
         }
-        
-        Float principal = console.nextFloat();
-
-        if (principal <= 0.0) {
-            System.out.println("Invalid input! please try again");
-            return this.getPrincipal(console);
-        }
-
         return principal;
     }
 
     private Float getInterest(Scanner console) {
-        System.out.print("Enter interest rate: ");
-
-        while(!console.hasNextFloat()) {
-            System.out.println("Invalid input! please try again");
+        Float interest = -1.0f;
+        while (interest < 0.0 || interest > 100.0) {
             System.out.print("Enter interest rate: ");
+            if (console.hasNextFloat()) {
+                interest = console.nextFloat();
+                if (interest < 0.0 || interest > 100.0) {
+                    System.out.println("Invalid Input! please try again");
+                }
+            } else {
+                System.out.println("Invalid input! please try again");
+                console.next(); // Clear invalid input
+            }
         }
-
-        Float interest = console.nextFloat();
-
-        if (interest > 100.0 || interest < 0.0) {
-            System.out.println("Invalid Input! please try again");
-            return this.getInterest(console);
-        }
-
         return interest;
     }
 
     private Float getTime(Scanner console) {
-        System.out.print("Enter time (in months): ");
-
-        while(!console.hasNextInt()) {
-            System.out.println("Invalid input! please try again");
+        Integer time = -1;
+        while (time <= 0) {
             System.out.print("Enter time (in months): ");
+            if (console.hasNextInt()) {
+                time = console.nextInt();
+                if (time <= 0) {
+                    System.out.println("Invalid Input! please try again");
+                }
+            } else {
+                System.out.println("Invalid input! please try again");
+                console.next(); // Clear invalid input
+            }
         }
-        Integer time = console.nextInt();
-        if (time <= 0) {
-            System.out.println("Invalid Input! please try again");
-            return this.getTime(console);
-        }
-
         return ((float) time) / 12;
     }
 
