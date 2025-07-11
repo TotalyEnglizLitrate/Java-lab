@@ -14,7 +14,7 @@ public class Interest {
                 }
             } else {
                 System.out.println("Invalid input! please try again");
-                console.next(); // Clear invalid input
+                console.next();
             }
         }
         return principal;
@@ -31,7 +31,7 @@ public class Interest {
                 }
             } else {
                 System.out.println("Invalid input! please try again");
-                console.next(); // Clear invalid input
+                console.next();
             }
         }
         return interest;
@@ -48,7 +48,7 @@ public class Interest {
                 }
             } else {
                 System.out.println("Invalid input! please try again");
-                console.next(); // Clear invalid input
+                console.next();
             }
         }
         return ((float) time) / 12;
