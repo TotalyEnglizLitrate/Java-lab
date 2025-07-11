@@ -65,7 +65,7 @@ public class Interest {
 
         console.close();
 
-        Float total_interest = principal * interest * time;
+        Float total_interest = principal * interest * time / 100;
 
         System.out.print("Total Interest: ");
         System.out.printf("%.2f\n", total_interest);

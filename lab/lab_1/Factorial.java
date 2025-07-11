@@ -26,7 +26,7 @@ public class Factorial {
             return (long)1;
         }
 
-        return this.factorial(n - 1);
+        return this.factorial(n - 1) * n;
 
     }
     public static void main(String[] args) {
@@ -38,6 +38,6 @@ public class Factorial {
         
         Long num_fact = fact.factorial(num);
 
-        System.out.printf("%d! = %d", num, num_fact);
+        System.out.printf("%d! = %d\n", num, num_fact);
     }
 }
