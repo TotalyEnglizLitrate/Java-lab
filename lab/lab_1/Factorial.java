@@ -37,7 +37,10 @@ public class Factorial {
         console.close();
         
         Long num_fact = fact.factorial(num);
-
-        System.out.printf("%d! = %d\n", num, num_fact);
+        if (num_fact == 0) {
+            System.out.println("Factorial too large to represent");
+        }else {
+            System.out.printf("%d! = %d\n", num, num_fact);
+        }
     }
 }
