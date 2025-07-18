@@ -8,16 +8,19 @@ package lab.lab_2;
 import java.util.Scanner;
 
 public class ElectricityBill {
+    // Enumeration for type of connection
     private enum ConnectionType {
         DOMESTIC,
         COMMERCIAL,
         UNDEFINED
     }
     
+    // Hardcoded rates and their corresponding thresholds
     private static Float[] domestic_rates = {1f, 2.5f, 4f, 6f};
     private static Float[] commercial_rates = {2f, 4.5f, 6f, 7f};
     private static int[] thresholds = {0, 101, 201, 501, Integer.MAX_VALUE};
     
+    // Class attributes
     private int consumer_num;
     private String consumer_name;
     private Float prev_reading;
@@ -26,17 +29,21 @@ public class ElectricityBill {
     private ConnectionType conn_type;
     private Float bill_amt;
 
+    // Constructor
     private ElectricityBill(int consumer_num, String consumer_name, Float prev_reading, Float current_reading, ConnectionType conn_type) {
         this.consumer_num = consumer_num;
         this.consumer_name = consumer_name;
         this.prev_reading = prev_reading;
         this.current_reading = current_reading;
-        this.units_consumed = current_reading - prev_reading;
+        this.units_consumed = current_reading - prev_reading; // Calculate units consumed
         this.conn_type = conn_type;
-        this.bill_amt = Float.NaN;
+        this.bill_amt = Float.NaN; // Set bill amount to NaN to indicate calculation is pending
     }
 
+    // Helper function to calculate the bill
     private void bill() {
+
+        // Identify which slab the no. of units consumed lies in
         int idx;
         for (idx = 0; idx < thresholds.length - 1; idx++)
             if (this.units_consumed > thresholds[idx] && this.units_consumed < thresholds[idx + 1]) break;
@@ -59,8 +66,9 @@ public class ElectricityBill {
         }
     }
 
+    // Helper function to print bill details
     private void print_bill() {
-        if (this.bill_amt.isNaN()) this.bill();
+        if (this.bill_amt.isNaN()) this.bill(); // if called before the bill is calculated, calculate it before proceeding
 
         System.out.println("\n\n");
         System.out.println("Consumer no.     : " + this.consumer_num);
@@ -78,6 +86,7 @@ public class ElectricityBill {
         System.out.print("Enter the Consumer Name: ");
         String consumer_name = in_stream.nextLine();
 
+        // General input bounds checking for all input provided
         int consumer_num = -1;
         while (consumer_num < 0) {
             System.out.print("Enter the Consumer Number: ");
@@ -129,7 +138,7 @@ public class ElectricityBill {
                 else if (_conn_type == 2) conn_type = ConnectionType.COMMERCIAL;
                 else System.out.println("Invalid connection type!");
             }
-        }
+        } // conn_type should never be UNDEFINED, this loop ensures that
 
         in_stream.close();
 
