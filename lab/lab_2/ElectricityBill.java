@@ -42,27 +42,35 @@ public class ElectricityBill {
 
     // Helper function to calculate the bill
     private void bill() {
+        
+        this.bill_amt = 0f;
+        if (this.units_consumed == 0) return;
 
+        float _units_consumed = this.units_consumed;
         // Identify which slab the no. of units consumed lies in
         int idx;
         for (idx = 0; idx < thresholds.length - 1; idx++)
             if (this.units_consumed > thresholds[idx] && this.units_consumed < thresholds[idx + 1]) break;
 
-        switch (conn_type) {
-            case DOMESTIC:
-                this.bill_amt = this.units_consumed * domestic_rates[idx];
-                break;
+        for (;idx >= 0; idx--) {
+            switch (conn_type) {
+                case DOMESTIC:
+                    this.bill_amt += (_units_consumed - thresholds[idx]) * domestic_rates[idx];
+                    break;
         
-            case COMMERCIAL:
-                this.bill_amt = this.units_consumed * commercial_rates[idx];
-                break;
+                case COMMERCIAL:
+                    this.bill_amt += (_units_consumed - thresholds[idx]) * commercial_rates[idx];
+                    break;
 
-            // UNDEFINED and default should be unreachable under normal circumstances
-            case UNDEFINED:
-                break;
+                // UNDEFINED and default should be unreachable under normal circumstances
+                case UNDEFINED:
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+
+            _units_consumed = (float)(thresholds[idx] - 1);
         }
     }
 
