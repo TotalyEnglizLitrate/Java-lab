@@ -3,19 +3,19 @@ package lab.lab_3.ex_1;
 import java.util.Scanner;
 
 public class Employee {
-    private String employee_name;
-    private int employee_id;
-    private String address;
-    private String email;
-    private String mobile_no;
-    private float base_pay;
-    private float gross_salary;
-    private float net_salary;
+    public String employee_name;
+    public int employee_id;
+    public String address;
+    public String email;
+    public String mobile_no;
+    public float base_pay;
+    public float gross_salary;
+    public float net_salary;
 
-    private float da;
-    private float hra;
-    private float pf;
-    private float staff_club;
+    public float da;
+    public float hra;
+    public float pf;
+    public float staff_club;
 
     private static float DA_RATE = .97f;
     private static float HRA_RATE = .1f;
@@ -39,34 +39,6 @@ public class Employee {
         this.net_salary = this.gross_salary - (this.pf + this.staff_club);
     }
 
-    public void print_payslip() {
-        System.out.print("Employee name          : ");
-        System.out.println(this.employee_name);
-        System.out.print("Employee ID            : ");
-        System.out.println(this.employee_id);
-        System.out.print("Address                : ");
-        System.out.println(this.address);
-        System.out.print("Email                  : ");
-        System.out.println(this.email);
-        System.out.print("Mobile no:             : ");
-        System.out.println();
-        System.out.println(this.mobile_no);
-        System.out.print("Basic pay              : ");
-        System.out.println(this.base_pay);
-        System.out.print("DA (97%)               : ");
-        System.out.println(this.da);
-        System.out.print("HRA (10%)              : ");
-        System.out.println(this.hra);
-        System.out.print("PF (12%)               : ");
-        System.out.println(this.pf);
-        System.out.print("Staff club fund (0.1%) : ");
-        System.out.println(this.staff_club);
-        System.out.println();
-        System.out.print("Gross salary           : ");
-        System.out.println(this.gross_salary);
-        System.out.print("Net salary             : ");
-        System.out.println(this.net_salary);
-    }
 
     Employee() {}
 
@@ -106,22 +78,24 @@ public class Employee {
         float base_pay = sc.nextFloat();
         sc.close();
 
+        PaySlip payslip = new PaySlip();
+
         switch (choice) {
             case 1:
                 Programmer p = new Programmer(employee_name, employee_id, address, email, mobile_no, base_pay);
-                p.print_payslip();
+                payslip.print_payslip(p);
                 break;
             case 2:
                 AssistantProf ap = new AssistantProf(employee_name, employee_id, address, email, mobile_no, base_pay);
-                ap.print_payslip();
+                payslip.print_payslip(ap);
                 break;
             case 3:
                 AssociateProf asp = new AssociateProf(employee_name, employee_id, address, email, mobile_no, base_pay);
-                asp.print_payslip();
+                payslip.print_payslip(asp);
                 break;
             case 4:
                 Professor prof = new Professor(employee_name, employee_id, address, email, mobile_no, base_pay);
-                prof.print_payslip();
+                payslip.print_payslip(prof);
                 break;
             default:
                 System.out.println("Invalid choice.");
